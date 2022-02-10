@@ -1,12 +1,17 @@
 ---
-version: '2'
+version: '3.3'
 services:
   stage:
-    image: alpine:3.14
+    image: tomcat
+    command: > 
+      sh -c "apt-get update &&
+             apt-get install -y git && 
+             apt-get install -y maven &&
+             git clone "https://github.com/boxfuse/boxfuse-sample-java-war-hello.git"
 
   prod:
     image: alpine:3.14
-    links:
+    depends_on:
       - stage
     ports:
       - "8080:80"
