@@ -2,7 +2,7 @@
 version: '3.3'
 services:
   stage:
-    image: tomcat
+    build: tomcat
     command: > 
       sh -c "apt-get update &&
              apt-get install -y git && 
