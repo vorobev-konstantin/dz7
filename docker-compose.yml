@@ -1,0 +1,12 @@
+---
+version: '2'
+services:
+  stage:
+    image: alpine:3.14
+
+  prod:
+    image: alpine:3.14
+    links:
+      - stage
+    ports:
+      - "8080:80"
