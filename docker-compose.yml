@@ -1,17 +1,20 @@
 ---
 version: '3.3'
 services:
-  stage:
-    build: tomcat/
-    command: > 
-      sh -c "apt-get update &&
-             apt-get install -y git && 
-             apt-get install -y maven &&
-             git clone "https://github.com/boxfuse/boxfuse-sample-java-war-hello.git"
+  builder:
+    build: 
+      dockerfile: Dockerfile.build
+    volumes:
+      - data:/opt
 
   prod:
-    image: alpine:3.14
+    image: tomcat:9.0.8-jre8-alpine
+    volumes:
+      - data:/usr/local/tomcat/webapps
     depends_on:
-      - stage
+      - builder
     ports:
-      - "8080:80"
+      - "8080:8080"
+
+volumes:
+  data:
