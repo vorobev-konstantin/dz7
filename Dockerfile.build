@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 ENV TZ=Europe/Moscow
 RUN apt-get update && apt-get install unzip git default-jdk maven -y
 RUN mkdir boxfuse
