@@ -4,7 +4,7 @@ services:
   builder:
     build: 
       dockerfile: Dockerfile.build
-      context: .
+      context: ./
     volumes:
       - data:/opt
 
